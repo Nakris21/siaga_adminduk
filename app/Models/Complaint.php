@@ -33,4 +33,9 @@ class Complaint extends Model
     {
         return $this->hasMany(ComplaintAttachment::class);
     }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(ComplaintMessage::class);
+    }
 }
