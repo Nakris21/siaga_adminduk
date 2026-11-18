@@ -5,6 +5,7 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
+use App\Http\Controllers\PublicComplaintStatusController;
 
 Route::get('/', function () {
     return view('public.home');
@@ -63,3 +64,25 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     )->name('complaints.attachments.show');
 
 });
+
+// Cek status pengaduan publik
+Route::get('/cek-status', [PublicComplaintStatusController::class, 'index'])
+    ->name('public.complaints.check');
+
+Route::post('/cek-status', [PublicComplaintStatusController::class, 'check'])
+    ->middleware('throttle:10,1')
+    ->name('public.complaints.check.submit');
+
+    // Halaman detail dan percakapan pengaduan publik
+Route::get('/cek-status/detail', [
+    PublicComplaintStatusController::class,
+    'detail'
+])->name('public.complaints.status');
+
+// Balasan dari masyarakat
+Route::post('/cek-status/balas', [
+    PublicComplaintStatusController::class,
+    'reply'
+])
+    ->middleware('throttle:10,1')
+    ->name('public.complaints.reply');

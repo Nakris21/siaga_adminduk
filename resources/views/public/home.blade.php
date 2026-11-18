@@ -111,7 +111,7 @@
                 administrasi kependudukan.
             </p>
 
-            <a href="/pengaduan" class="mt-6 inline-block font-semibold text-green-700 hover:text-green-900">
+            <a href="{{ route('complaints.create') }}" class="mt-6 inline-block font-semibold text-green-700 hover:text-green-900">
                 Buat Pengaduan →
             </a>
         </div>
@@ -128,7 +128,7 @@
                 dan kode akses.
             </p>
 
-            <a href="#" class="mt-6 inline-block font-semibold text-green-700 hover:text-green-900">
+            <a href="{{ route('public.complaints.check') }}" class="mt-6 inline-block font-semibold text-green-700 hover:text-green-900">
                 Periksa Pengaduan →
             </a>
         </div>
